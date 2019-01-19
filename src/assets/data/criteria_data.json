@@ -1,0 +1,14 @@
+[
+    {
+      "criteriaName": "criteria1",
+      "mm":100
+    },
+    {
+      "criteriaName": "criteria2",
+      "mm":100 
+    },
+    {
+      "criteriaName": "criteria3",
+      "mm":100
+    }
+]
