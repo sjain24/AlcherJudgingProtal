@@ -1,9 +1,10 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, FormControl , Validators  } from '@angular/forms';
 import { DataService } from './data.service';
 import { RegistrationService } from './registration.service';
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
+import { marksValidator } from './shared/marks-validator'
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit{
     public totalCriteria = 1;
     public errorMsg;
     EditRowId: any ='';
+    EditRowId2: any ='';
     public i:number = 0;
     idleState = 'Not started.';
     timedOut = false;
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit{
       this.reset();
       this.timedOut = true;
       this.Edit(0);
+      this.Edit2(0);
     });
     idle.onIdleStart.subscribe(() => this.idleState = 'You\'ve gone idle!');
     // idle.onTimeoutWarning.subscribe((countdown) => this.idleState = 'You will time out in ' + countdown + ' seconds!');
@@ -98,9 +101,10 @@ export class AppComponent implements OnInit{
     buildCriteria(criteria , index): FormGroup{
       return this.fb.group({
         criteriaName: criteria.criteriaName,
-        marks: [''],
+        marks:[0],
         max_marks: criteria.mm, 
-      })
+        id:criteria.id
+      },{ validator: marksValidator})
     } 
 
     get Participants(){
@@ -109,9 +113,12 @@ export class AppComponent implements OnInit{
  
 
   Edit(val){
-     this.EditRowId = val;   
+     this.EditRowId = val;  
+     
   }
-
+  Edit2(val){
+    this.EditRowId2 = val;  
+ }
 
   save(formData) {
     console.log(formData.value);
@@ -125,6 +132,8 @@ export class AppComponent implements OnInit{
         error => console.error('Error!', error)
       );
   }
+
+
   saveCandidateForm(CandidateForm , i){
     console.log(CandidateForm.value);
     this.Participants.at(i).get('dataSaveCheck').setValue(true);
