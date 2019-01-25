@@ -104,7 +104,7 @@ export class AppComponent implements OnInit{
         marks:[0],
         max_marks: criteria.mm, 
         id:criteria.id
-      },{ validator: marksValidator})
+      },{ validator: marksValidator} )
     } 
 
     get Participants(){
