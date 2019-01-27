@@ -65,7 +65,7 @@
             <span [formGroupName] = "j">
             
               <td *ngIf ="EditRowId === candidate.get('id').value"><input style="width:100px" [class.is-invalid]="criteria.errors?.notValid" type="number" formControlName ="marks" (click)="changeButtonColor(i)"><br><small *ngIf="criteria.errors?.notValid" class="text-danger" >*Invalid marks</small></td>
-              <td [class.is-invalid]="criteria.errors?.notValid" *ngIf ="EditRowId !== candidate.get('id').value" (click)="Edit(candidate.get('id').value)" ><input style="width:100px" type="text" disabled value="---" ><br><small *ngIf="criteria.errors?.notValid" class="text-danger" >*Invalid marks</small></td>
+              <td [class.is-invalid]="criteria.errors?.notValid" *ngIf ="EditRowId !== candidate.get('id').value" (click)="Edit(candidate.get('id').value)" ><input style="width:100px" type="text" disabled value="" ><br><small *ngIf="criteria.errors?.notValid" class="text-danger" >*Invalid marks</small></td>
               
           
             </span>
