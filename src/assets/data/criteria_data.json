@@ -18,6 +18,26 @@
       "criteriaName": "criteria4",
       "mm":100,
       "id":4
+    },
+    {
+      "criteriaName": "criteria5",
+      "mm":100,
+      "id":5
+    },
+    {
+      "criteriaName": "criteria6",
+      "mm":100,
+      "id":6
+    },
+    {
+      "criteriaName": "criteria7",
+      "mm":100,
+      "id":7
+    },
+    {
+      "criteriaName": "criteria8",
+      "mm":100,
+      "id":8
     }
-    
+  
 ]

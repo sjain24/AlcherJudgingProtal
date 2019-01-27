@@ -10,6 +10,7 @@ import { marksValidator } from './shared/marks-validator'
   selector: 'app-root',
   templateUrl: 'app.component.html',
 })
+
 export class AppComponent implements OnInit{
     public myForm: FormGroup;
     public totalCriteria = 1;
@@ -104,20 +105,26 @@ export class AppComponent implements OnInit{
         marks:[0],
         max_marks: criteria.mm, 
         id:criteria.id
-      },{ validator: marksValidator} )
+      },{ validator: marksValidator})
     } 
 
     get Participants(){
       return this.myForm.get('participants') as FormArray;
     }
- 
+  
 
   Edit(val){
      this.EditRowId = val;  
-     
   }
   Edit2(val){
-    this.EditRowId2 = val;  
+    this.EditRowId2 = val; 
+    // for(let i = 0  ; i < this.participant_data.length ; i++){
+    //    //var criteria = this.Participants.at(i).get('criteriaArray') as FormArray;
+    //    for(let j = 1  ; j < this.criteria_data.length ; j++){
+    //        this.myForm.controls.participants[i].controls.criteriaArray[j].controls 
+    //       // criteria.at(0).get('criteriaName').setValue(criteriaValue);
+    //    }
+    // }
  }
 
   save(formData) {

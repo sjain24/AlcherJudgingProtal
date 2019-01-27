@@ -1,97 +1,95 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 </head>
-<div class ="page-header text-center" (click)="Edit2(0)" >
-  <h1>Judging Portal</h1>
+<div class ="text-center" (click)="Edit2(0)">
+  <h1 style="font-family: 'Rammetto One', cursive;">Judging Portal</h1>
 </div>
 
   <div id="container">
-      <button type="button" class="btn btn-primary btn-sm m-2" (click)=Edit(0) >Hide all</button>
-      <button type="button" class="btn btn-primary btn-sm m-2" (click)=Edit2(0) >Save criteria details</button>
-      <button type="button" class="btn btn-primary btn-sm m-2" (click)=loadApidata() >Load data</button>
+      <button type="button" class="btn-default" (click)=Edit(0) >Hide all</button> 
+      <button type="button" class="btn-default" (click)=Edit2(0) >Save criteria details</button>
+      <button type="button" class="btn-default" (click)=loadApidata() >Load data</button>  
+      <br>
   <form [formGroup] = "myForm" (ngSubmit)="save(myForm)"  #userForm = "ngForm">
-    <table class="table table-bordered table-hover">
+    <table class="table table-hover table-striped">
 
-      <thead class="thead-dark" >
+      <thead class="thead" >
         
-      <tr>
-        <th class="text-center">registrationNo</th>
-        
+      <tr class="table-primary">
+        <th style="width:250px;" class="" >registrationNo</th>
+
         <!--adding heading to criterias using *ngFor -->
-        <div formArrayName ="participants" *ngFor = "let candidate of myForm.controls.participants['controls'];let i  = index;">
-          <div [formGroupName] = "i">
-            <div formArrayName ="criteriaArray" class="d-inline-block" *ngFor = "let criteria of candidate.get('criteriaArray').controls;let j  = index;">
+        <span formArrayName ="participants" *ngFor = "let candidate of myForm.controls.participants['controls'];let i  = index;">
+          <span [formGroupName] = "i">
+            <span formArrayName ="criteriaArray" class="d-inline-block" *ngFor = "let criteria of candidate.get('criteriaArray').controls;let j  = index;">
               
-                <div [formGroupName] = "j" >
-                    <th *ngIf="(i === 0) && (EditRowId2 !== criteria.get('id').value)" class="text-center" style="width: 100%" (click)="Edit2(criteria.get('id').value)">{{criteria.get('criteriaName').value}}</th>
-                    <th *ngIf="(i === 0) && (EditRowId2 === criteria.get('id').value)" class="text-center" style="width: 100%" ><input type="text" formControlName ="criteriaName"></th>
-                </div>
+                <span [formGroupName] = "j" >
+                    <!-- <th *ngIf="(i === 0) && (EditRowId2 !== criteria.get('id').value)" class="" style="width: 100%" >{{criteria.get('criteriaName').value}}</th> -->
+                    <th *ngIf="(i === 0)"  class="" style="width: 100%" ><input style="width:100px" type="text" formControlName ="criteriaName" value="{{criteria.get('criteriaName').value}}"></th>
+                </span>
               
-            </div>
-          </div>
-        </div>
+              </span>
+            </span>
+          </span>
 
       </tr>
-      </thead>
+    </thead>
+      <tr>
+        <td style="width:250px;">Maximum Marks</td>
+     <!--adding maximum marks row to the table using *ngFor -->
+     <span (click)="Edit(0)" formArrayName ="participants" *ngFor = "let candidate of myForm.controls.participants['controls'];let i  = index;">
+        <span [formGroupName] = "i">
+          <span formArrayName ="criteriaArray" class="d-inline-block" *ngFor = "let criteria of candidate.get('criteriaArray').controls;let j  = index;">
+              <span [formGroupName] = "j">
+                <!-- <td *ngIf="(i === 0) && (EditRowId2 !== criteria.get('id').value)"  (click)="Edit2(criteria.get('id').value)">{{criteria.get('max_marks').value}}</td> -->
+                <td *ngIf ="(i===0)"> <input style="width:100px"  type="number" formControlName ="max_marks" value="{{criteria.get('max_marks').value}}" > </td> 
+              </span>
+            </span>
+          </span>
+        </span>
+  
+    </tr>
+      
+    </table>
+    <table class="table table-hover table-striped">
 
       <tbody>
-      <tr>
-          <td>Maximum Marks</td>
-       <!--adding maximum marks row to the table using *ngFor -->
-       <div (click)="Edit(0)" formArrayName ="participants" *ngFor = "let candidate of myForm.controls.participants['controls'];let i  = index;">
-          <div [formGroupName] = "i">
-            <div formArrayName ="criteriaArray" class="d-inline-block" *ngFor = "let criteria of candidate.get('criteriaArray').controls;let j  = index;">
-                <div [formGroupName] = "j">
-                  <td *ngIf="(i === 0) && (EditRowId2 !== criteria.get('id').value)"  (click)="Edit2(criteria.get('id').value)">{{criteria.get('max_marks').value}}</td>
-                  <td *ngIf ="(EditRowId2 === criteria.get('id').value) && (i===0)"> <input type="number" formControlName ="max_marks" > </td> 
-                </div>
+      <div formArrayName ="participants" *ngFor = "let candidate of myForm.controls.participants['controls'];let i  = index;" (click)=Edit2(0)>
+        <span [formGroupName] = "i">
+        <tr>
 
-            </div>
-          </div>
-        </div>
-    
-      </tr>
-    
-    <div formArrayName ="participants" *ngFor = "let candidate of myForm.controls.participants['controls'];let i  = index;" (click)=Edit2(0)>
-      <div [formGroupName] = "i">
-      <tr>
-      <td> {{candidate.get('registrationNo').value}} </td>  
-
-
-      <div formArrayName ="criteriaArray" class="d-inline-block"  *ngFor = "let criteria of candidate.get('criteriaArray').controls;let j  = index;">
-        
-          <div [formGroupName] = "j">
+          <td style="width:250px;"> {{candidate.get('registrationNo').value}} </td>  
+          <span formArrayName ="criteriaArray" class=""  *ngFor = "let criteria of candidate.get('criteriaArray').controls;let j  = index;">
+            <span [formGroupName] = "j">
             
-            <td *ngIf ="EditRowId === candidate.get('id').value"> <input [class.is-invalid]="criteria.errors?.notValid" type="number" formControlName ="marks" (click)="changeButtonColor(i)"> </td>
-            <td [class.is-invalid]="criteria.errors?.notValid" *ngIf ="EditRowId !== candidate.get('id').value" (click)="Edit(candidate.get('id').value)" >-----</td>
-           
-            <small *ngIf="criteria.errors?.notValid" class="text-danger" >Invalid marks</small>
-          </div>
-        
-      </div> 
-
-      <button *ngIf = "candidate.get('dataSaveCheck').value === true" type="button" value="candidate.get('id').value" class="btn btn-primary btn-sm m-2" (click)="saveCandidateForm(candidate , i )" [disabled]='!userForm.form.valid'>save</button>
-      <button *ngIf = "candidate.get('dataSaveCheck').value === false" type="button" value="candidate.get('id').value" class="btn btn-danger btn-sm m-2" (click)="saveCandidateForm(candidate , i )" [disabled]='!userForm.form.valid'>save</button>
-
-      </tr>
+              <td *ngIf ="EditRowId === candidate.get('id').value"><input style="width:100px" [class.is-invalid]="criteria.errors?.notValid" type="number" formControlName ="marks" (click)="changeButtonColor(i)"><br><small *ngIf="criteria.errors?.notValid" class="text-danger" >*Invalid marks</small></td>
+              <td [class.is-invalid]="criteria.errors?.notValid" *ngIf ="EditRowId !== candidate.get('id').value" (click)="Edit(candidate.get('id').value)" ><input style="width:100px" type="text" disabled value="---" ><br><small *ngIf="criteria.errors?.notValid" class="text-danger" >*Invalid marks</small></td>
+              
+          
+            </span>
+          </span> 
+          <td>
+            <button *ngIf = "candidate.get('dataSaveCheck').value === true" type="button" value="candidate.get('id').value" class="btn-primary" (click)="saveCandidateForm(candidate , i )" [disabled]='!userForm.form.valid'>save</button>
+            <button *ngIf = "candidate.get('dataSaveCheck').value === false" type="button" value="candidate.get('id').value" class="btn-danger" (click)="saveCandidateForm(candidate , i )" [disabled]='!userForm.form.valid'>save</button>
+          </td>
+        </tr>
+        </span>
       </div>
-    </div>
+      
     </tbody>
     </table>
    
 
-    <button type="submit" [disabled]='!userForm.form.valid' >Save All</button>
+    <button type="submit" [disabled]='!userForm.form.valid' class="btn btn-primary">Save All</button>
     
   </form>
-  <button [disabled]='!userForm.form.valid' >Show standings</button>
+  <a routerLink = "/standings" routerLinkActive = "active">Show standings</a>
 </div>
 
 <br>
 
-
-<br>
 {{myForm.value | json}}
-<br>
 {{errorMsg}}
-
+<router-outlet></router-outlet>
