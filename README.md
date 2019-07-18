@@ -1,4 +1,6 @@
-# MarksheetAlcher
+# Judging Portal Alcheringa
+Project by Siddharth Jain (EEE , IITG)
+Mentor Mithlesh Yadav
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
 
